@@ -33,7 +33,7 @@ const render = () => {
         </div>
       </div>    
       `
-    );
+    ).join('');
     document.getElementById("news-board").innerHTML = newsHTML;
 };
 
