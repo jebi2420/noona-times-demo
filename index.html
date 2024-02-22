@@ -16,9 +16,9 @@
   <body>
     <!-- mobile -->
     <div id="side-nav" class="side-nav">
-      <a href="#" class="close-btn" onclick="closeNav()"
-        ><i class="fa-solid fa-xmark"></i
-      ></a>
+      <button class="close-btn" onclick="closeNav()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
       <a href="#">Business</a>
       <a href="#">Entertainment</a>
       <a href="#">General</a>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="mobile-nav">
-      <i class="fa-solid fa-bars" id="menu-icon"></i>
+      <i class="fa-solid fa-bars" id="menu-icon" onclick="openNav()"></i>
       <div class="search-area">
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="search" id="search-input" />

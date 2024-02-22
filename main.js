@@ -4,6 +4,8 @@ let newsList =[]
 // 1. 버튼들에 클릭 이벤트 주기
 const menus = document.querySelectorAll(".menus button") // array로 menus 들고 오기
 menus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)))
+const mobileMenus = document.querySelectorAll(".side-nav a")
+mobileMenus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)))
 
 const getLatestNews = async () => {
     //const url = new URL(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`);
@@ -87,5 +89,8 @@ const render = () => {
 
 getLatestNews();
 
+let sideNav = document.getElementById("side-nav");
+const openNav = () => sideNav.style.width = "250px";
+const closeNav = () => sideNav.style.width = "0";
 
 
