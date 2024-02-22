@@ -66,8 +66,33 @@
 }
 
 .search-area{
+    height: 63.2px;
     display: flex;
+    align-items: center;
     padding: 15px;
+}
+
+.search-area i{
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+#search-input-box{
+    display: none;
+    transition: 0.3s;
+}
+
+#search-input{
+    margin-right: 5px;
+}
+
+#search-input-box button{
+    padding: 7px 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: black;
+    color: white;
+    font-size: 0.8em;
 }
 
 .news-img-size{
@@ -95,10 +120,12 @@
     #menu-icon{
         height: 10px;
         display: flex;
-        padding: 15px 0 15px 20px;
+        /* padding: 15px 0 15px 20px; */
     }
 
     .mobile-nav{
         display: flex;
+        align-items: center;
+        padding: 0 15px;
     }
 }

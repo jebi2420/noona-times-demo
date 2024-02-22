@@ -30,9 +30,11 @@
     <div class="mobile-nav">
       <i class="fa-solid fa-bars" id="menu-icon" onclick="openNav()"></i>
       <div class="search-area">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="search" id="search-input" />
-        <button onclick="getNewsByKeyword()">검색</button>
+        <i class="fa-solid fa-magnifying-glass" onclick="toggleSearch()"></i>
+        <div id="search-input-box">
+          <input type="search" id="search-input" />
+          <button onclick="getNewsByKeyword()">검색</button>
+        </div>
       </div>
     </div>
 

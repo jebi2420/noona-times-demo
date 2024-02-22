@@ -31,7 +31,7 @@ const getNewsByCategory = async (event) => {
     // 3. 그 뉴스를 보여주기
     render();
 }
-
+// 키워드별 뉴스 가져오기
 const getNewsByKeyword = async () => {
     let searchInput = document.getElementById("search-input");
     let keyword = searchInput.value;
@@ -92,5 +92,17 @@ getLatestNews();
 let sideNav = document.getElementById("side-nav");
 const openNav = () => sideNav.style.width = "250px";
 const closeNav = () => sideNav.style.width = "0";
+
+let searchInputBox = document.getElementById("search-input-box");
+const toggleSearch = () => {
+    if(searchInputBox.style.display === "none"){
+        searchInputBox.style.display = "flex"
+        console.log("flex")
+    }else{
+        searchInputBox.style.display = "none"
+        console.log("else")
+    }
+    
+}
 
 
