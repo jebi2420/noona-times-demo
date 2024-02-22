@@ -65,7 +65,8 @@ const getNewsByKeyword = async () => {
 // 화면 구현
 const render = () => {
     const newsHTML = newsList.map(
-        (news) => ` 
+        (news) => 
+        ` 
         <div class="news row">
         <div class="col-lg-4">
           <img
@@ -76,7 +77,7 @@ const render = () => {
         </div>
         <div class="col-lg-8">
           <h2>${news.title}</h2>
-          <p>${news.description}</p>
+          <p>${truncateText(news.description, 200)}</p>
           <div>
             ${news.source.name} * ${news.publishedAt}
           </div>
@@ -101,8 +102,15 @@ const toggleSearch = () => {
     }else{
         searchInputBox.style.display = "none"
         console.log("else")
+    }   
+}
+
+const truncateText = (text, maxLength) => {
+    if(text.length > maxLength){
+        return text.substring(0, maxLength) + "...";
+    }else{
+        return text;
     }
-    
 }
 
 
