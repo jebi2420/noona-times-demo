@@ -106,10 +106,14 @@ const toggleSearch = () => {
 }
 
 const truncateText = (text, maxLength) => {
-    if(text.length > maxLength){
-        return text.substring(0, maxLength) + "...";
+    if(text){
+        if(text.length > maxLength){
+            return text.substring(0, maxLength) + "...";
+        }else{
+            return text;
+        }
     }else{
-        return text;
+        return "내용없음";
     }
 }
 
