@@ -79,7 +79,7 @@ const render = () => {
           <h2>${news.title}</h2>
           <p>${truncateText(news.description, 200)}</p>
           <div>
-            ${news.source.name} * ${news.publishedAt}
+            ${news.source.name || "no source"} * ${moment(news.publishedAt).fromNow()}
           </div>
         </div>
       </div>    
