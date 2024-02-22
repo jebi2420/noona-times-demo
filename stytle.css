@@ -1,6 +1,6 @@
 .side-nav{
     height: 100%;
-    width: 250px;
+    width: 0;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -76,7 +76,7 @@
     border-bottom: 2px solid black;
 }
 
-.menus-m{
+#menu-icon{
     display: none;
 }
 
@@ -89,13 +89,10 @@
         display: none;
     }
 
-    .menus-m{
-        display: flex;
-        padding: 15px 0 15px 20px;
-    }
-
     #menu-icon{
         height: 10px;
+        display: flex;
+        padding: 15px 0 15px 20px;
     }
 
     .mobile-nav{
