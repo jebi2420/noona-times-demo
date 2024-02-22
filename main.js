@@ -22,7 +22,7 @@ const getNewsByCategory = async (event) => {
     const category = event.target.textContent.toLowerCase(); // 이벤트가 발생한 요소 읽어오기
     console.log("category", category);
     const url = new URL(`https://noona-times-demo.netlify.app/top-headlines?category=${category}`)
-    const response =  await fetch(url)
+    const response =  await fetch(url);
     const data = await response.json();
     console.log("ddd", data);
     newsList = data.articles;
@@ -30,6 +30,37 @@ const getNewsByCategory = async (event) => {
     render();
 }
 
+const getNewsByKeyword = async () => {
+    let searchInput = document.getElementById("search-input");
+    let keyword = searchInput.value;
+    let url = new URL(`https://noona-times-demo.netlify.app/top-headlines?q=${keyword}`);
+    let response = await fetch(url);
+    let data = await response.json();
+    newsList = data.articles;
+    render();
+    console.log("keyword data", data)
+}
+
+// 엔터 이벤트 
+// if로 event리스너 할 수 있을듯..?
+// const getNewsByKeywordEnter = async () => {
+//     let searchInput = document.getElementById("search-input");
+//     searchInput.addEventListener = ("keydown", async (e) => {
+//         if(e.key === 'Enter'){
+//             let keyword = searchInput.value;
+//             let url = new URL(`https://noona-times-demo.netlify.app/top-headlines?q=${keyword}`);
+//             let response = await fetch(url);
+//             let data = await response.json();
+
+//             console.log("keyword enter", data)
+//         }
+//     })
+//}
+
+
+    
+
+// 화면 구현
 const render = () => {
     const newsHTML = newsList.map(
         (news) => ` 
@@ -56,7 +87,5 @@ const render = () => {
 
 getLatestNews();
 
-const getNewsByKeyword = () => {
 
-}
 
