@@ -70,7 +70,7 @@ const render = () => {
         <div class="news row">
         <div class="col-lg-4">
           <img
-            src=${news.urlToImage}
+            src="${news.urlToImage || "https://st4.depositphotos.com/14953852/22772/v/450/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg"}"
             alt=""
             class="news-img-size"
           />
@@ -90,10 +90,12 @@ const render = () => {
 
 getLatestNews();
 
+// 사이드 메뉴
 let sideNav = document.getElementById("side-nav");
 const openNav = () => sideNav.style.width = "250px";
 const closeNav = () => sideNav.style.width = "0";
 
+// search-input 토글
 let searchInputBox = document.getElementById("search-input-box");
 const toggleSearch = () => {
     if(searchInputBox.style.display === "none"){
@@ -105,6 +107,7 @@ const toggleSearch = () => {
     }   
 }
 
+// 내용 200자 이상시 ... 표시
 const truncateText = (text, maxLength) => {
     if(text){
         if(text.length > maxLength){
@@ -116,5 +119,4 @@ const truncateText = (text, maxLength) => {
         return "내용없음";
     }
 }
-
 
