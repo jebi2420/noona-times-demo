@@ -9,23 +9,18 @@ mobileMenus.forEach(menu => menu.addEventListener("click", (event) => getNewsByC
 const getLatestNews = async () => {
     //const url = new URL(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`);
     const url = new URL(`https://noona-times-demo.netlify.app/top-headlines`);
-    console.log("url",url)
     const response =  await fetch(url)
-    console.log("response",response)
     const data = await response.json();
     newsList = data.articles; // 뉴스만 따로 뽑아서 보기
     render();
-    console.log("data",newsList)
 };
 
 // 카테고리별 뉴스 가져오기
 const getNewsByCategory = async (event) => {
     const category = event.target.textContent.toLowerCase(); // 이벤트가 발생한 요소 읽어오기
-    console.log("category", category);
     const url = new URL(`https://noona-times-demo.netlify.app/top-headlines?category=${category}`)
     const response =  await fetch(url);
     const data = await response.json();
-    console.log("ddd", data);
     newsList = data.articles;
     // 그 뉴스를 보여주기
     render();
@@ -39,7 +34,6 @@ const getNewsByKeyword = async () => {
     let data = await response.json();
     newsList = data.articles;
     render();
-    console.log("keyword data", data)
 }
 
 // 엔터 이벤트 
@@ -99,10 +93,8 @@ let searchInputBox = document.getElementById("search-input-box");
 const toggleSearch = () => {
     if(searchInputBox.style.display === "none"){
         searchInputBox.style.display = "flex"
-        console.log("flex")
     }else{
         searchInputBox.style.display = "none"
-        console.log("else")
     }   
 }
 
