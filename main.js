@@ -1,19 +1,33 @@
 const API_KEY = '3b7b6f23e8bc401fa30252d944a39d1f';
 let newsList =[]
+
 // 버튼들에 클릭 이벤트 주기
 const menus = document.querySelectorAll(".menus button") // array로 menus 들고 오기
 menus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)))
 const mobileMenus = document.querySelectorAll(".side-nav a")
 mobileMenus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)))
 
-const getLatestNews = async () => {
-    //const url = new URL(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`);
-    const url = new URL(`https://noona-times-demo.netlify.app/top-headlines`);
-    const response =  await fetch(url)
+// 전역변수 url
+let url = new URL(`https://noona-times-demo.netlify.app/top-headlines`);
+
+// 뉴스 가져오기
+const getNews = async () => {
+    const response = await fetch(url);
     const data = await response.json();
-    newsList = data.articles; // 뉴스만 따로 뽑아서 보기
+    newsList = data.articles;
     render();
-};
+}
+
+// 최신 뉴스 가져오기
+// const getLatestNews = async () => {
+//     url = new URL(`https://noona-times-demo.netlify.app/top-headlines`);
+//     const response =  await fetch(url)
+//     const data = await response.json();
+//     newsList = data.articles; // 뉴스만 따로 뽑아서 보기
+//     render();
+// };
+
+
 
 // 카테고리별 뉴스 가져오기
 const getNewsByCategory = async (event) => {
@@ -81,7 +95,7 @@ const render = () => {
     document.getElementById("news-board").innerHTML = newsHTML;
 };
 
-getLatestNews();
+getNews();
 
 // 사이드 메뉴
 let sideNav = document.getElementById("side-nav");
