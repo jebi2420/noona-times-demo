@@ -12,10 +12,27 @@ let url = new URL(`https://noona-times-demo.netlify.app/top-headlines`);
 
 // 뉴스 가져오기
 const getNews = async () => {
-    const response = await fetch(url);
-    const data = await response.json();
-    newsList = data.articles;
-    render();
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        // response 상태가 정상일 경우 
+        if(response.status === 200){
+            // 검색 결과가 없을 경우
+            if(data.articles.length === 0){
+                throw new Error("No result for this search");
+            }
+            newsList = data.articles;
+            render();
+        }else{
+            // 비정상일 경우 에러메시지를 보낸다
+            throw new Error(data.message);
+        }
+
+    } catch(error){
+        console.log("error: ", error.message);
+        errorRender(error.message);
+    }
 }
 
 
@@ -81,6 +98,14 @@ const render = () => {
     document.getElementById("news-board").innerHTML = newsHTML;
 };
 
+const errorRender = (errorMessage) => {
+    const errorHTML = `<div class="alert alert-danger" role="alert">
+    ${errorMessage}
+    </div>`;
+
+    document.getElementById("news-board").innerHTML = errorHTML;
+}
+
 getNews();
 
 // 사이드 메뉴
@@ -92,6 +117,7 @@ const closeNav = () => sideNav.style.width = "0";
 let searchInputBox = document.getElementById("search-input-box");
 const toggleSearch = () => {
     if(searchInputBox.style.display === "none"){
+        console.log("flex");
         searchInputBox.style.display = "flex"
     }else{
         searchInputBox.style.display = "none"
