@@ -1,7 +1,7 @@
 
 const API_KEY = '3b7b6f23e8bc401fa30252d944a39d1f';
 let newsList =[]
-// 1. 버튼들에 클릭 이벤트 주기
+// 버튼들에 클릭 이벤트 주기
 const menus = document.querySelectorAll(".menus button") // array로 menus 들고 오기
 menus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)))
 const mobileMenus = document.querySelectorAll(".side-nav a")
@@ -19,7 +19,7 @@ const getLatestNews = async () => {
     console.log("data",newsList)
 };
 
-// 2. 카테고리별 뉴스 가져오기
+// 카테고리별 뉴스 가져오기
 const getNewsByCategory = async (event) => {
     const category = event.target.textContent.toLowerCase(); // 이벤트가 발생한 요소 읽어오기
     console.log("category", category);
@@ -28,7 +28,7 @@ const getNewsByCategory = async (event) => {
     const data = await response.json();
     console.log("ddd", data);
     newsList = data.articles;
-    // 3. 그 뉴스를 보여주기
+    // 그 뉴스를 보여주기
     render();
 }
 // 키워드별 뉴스 가져오기
