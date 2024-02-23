@@ -1,5 +1,3 @@
-//테스트테스트테스트
-
 const API_KEY = '3b7b6f23e8bc401fa30252d944a39d1f';
 let newsList =[]
 // 버튼들에 클릭 이벤트 주기
