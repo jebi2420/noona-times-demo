@@ -18,36 +18,22 @@ const getNews = async () => {
     render();
 }
 
-// 최신 뉴스 가져오기
-// const getLatestNews = async () => {
-//     url = new URL(`https://noona-times-demo.netlify.app/top-headlines`);
-//     const response =  await fetch(url)
-//     const data = await response.json();
-//     newsList = data.articles; // 뉴스만 따로 뽑아서 보기
-//     render();
-// };
-
-
 
 // 카테고리별 뉴스 가져오기
 const getNewsByCategory = async (event) => {
     const category = event.target.textContent.toLowerCase(); // 이벤트가 발생한 요소 읽어오기
-    const url = new URL(`https://noona-times-demo.netlify.app/top-headlines?category=${category}`)
-    const response =  await fetch(url);
-    const data = await response.json();
-    newsList = data.articles;
-    // 그 뉴스를 보여주기
-    render();
+    url = new URL(`https://noona-times-demo.netlify.app/top-headlines?category=${category}`)
+    
+    getNews()
 }
+
 // 키워드별 뉴스 가져오기
 const getNewsByKeyword = async () => {
     let searchInput = document.getElementById("search-input");
     let keyword = searchInput.value;
-    let url = new URL(`https://noona-times-demo.netlify.app/top-headlines?q=${keyword}`);
-    let response = await fetch(url);
-    let data = await response.json();
-    newsList = data.articles;
-    render();
+    url = new URL(`https://noona-times-demo.netlify.app/top-headlines?q=${keyword}`);
+
+    getNews();
 }
 
 // 엔터 이벤트 
