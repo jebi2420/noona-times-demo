@@ -141,26 +141,23 @@ const pagiNationRender = () => {
     // firstPage
         // 0보다 작거나 같다면 그냥 1로 해주고 아니면 그대로 (첫번째 페이지가 -1이나 0이 될 수 없으니)
         let firstPage = lastPage - (groupSize - 1)<= 0 ? 1 : lastPage - (groupSize - 1);
-        
-        let paginationHTML = `<li class="page-item"><a class="page-link" href="#">Previous</a></li>`;
+
+        let paginationHTML = ``
+
+        // previous 
+        paginationHTML = `<li class="page-item ${page === 1 ? 'disabled' : ''}" ${page !== 1 ? 'onclick="moveToPage(' + (page - 1) + ')"' : ''}>
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="${page === 1}">Previous</a>
+                 </li>`;      
 
     for(let i = firstPage; i<=lastPage; i++){
         // 현재 보고 있는 페이지면 active
         paginationHTML += `<li class="page-item ${i===page?"active":''}"  onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`
     }
-    paginationHTML += ` <li class="page-item"><a class="page-link" href="#">Next</a></li>`
+    // next
+    paginationHTML += ` <li class="page-item ${page === totalPages ? 'disabled' : ''}" 
+    ${page !== totalPages ? 'onclick="moveToPage(' + (page+1) + ')"' : ''}><a class="page-link">Next</a></li>`
 
     document.querySelector(".pagination").innerHTML = paginationHTML;
-    
-    // <nav aria-label="Page navigation example">
-    //     <ul class="pagination">
-    //         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    //         <li class="page-item"><a class="page-link" href="#">1</a></li>
-    //         <li class="page-item"><a class="page-link" href="#">2</a></li>
-    //         <li class="page-item"><a class="page-link" href="#">3</a></li>
-    //         <li class="page-item"><a class="page-link" href="#">Next</a></li>
-    //     </ul>
-    // </nav>
 
 }
 
