@@ -145,17 +145,21 @@ const pagiNationRender = () => {
         let paginationHTML = ``
 
         // previous 
-        paginationHTML = `<li class="page-item ${page === 1 ? 'disabled' : ''}" ${page !== 1 ? 'onclick="moveToPage(' + (page - 1) + ')"' : ''}>
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="${page === 1}">Previous</a>
-                 </li>`;      
+        paginationHTML = `
+        <li class="page-item ${page === 1 ? 'disabled' : ''}" ${page !== 1 ? 'onclick="moveToPage(' + 1 + ')"' : ''}><a class="page-link"><i class="fa-solid fa-angles-left"></i></a></li>
+        <li class="page-item ${page === 1 ? 'disabled' : ''}" ${page !== 1 ? 'onclick="moveToPage(' + (page - 1) + ')"' : ''}>
+        <a class="page-link" href="#" tabindex="-1" aria-disabled="${page === 1}"><i class="fa-solid fa-angle-left"></i></a>
+        </li>`;      
 
     for(let i = firstPage; i<=lastPage; i++){
         // 현재 보고 있는 페이지면 active
         paginationHTML += `<li class="page-item ${i===page?"active":''}"  onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`
     }
     // next
-    paginationHTML += ` <li class="page-item ${page === totalPages ? 'disabled' : ''}" 
-    ${page !== totalPages ? 'onclick="moveToPage(' + (page+1) + ')"' : ''}><a class="page-link">Next</a></li>`
+    paginationHTML += `
+    <li class="page-item ${page === totalPages ? 'disabled' : ''}" 
+    ${page !== totalPages ? 'onclick="moveToPage(' + (page+1) + ')"' : ''}><a class="page-link"><i class="fa-solid fa-angle-right"></i></a></li>
+    <li class="page-item ${page === totalPages ? 'disabled' : ''}" ${page !== totalPages ? 'onclick="moveToPage(' + totalPages + ')"' : ''}><a class="page-link"><i class="fa-solid fa-angles-right"></i></a></li>`
 
     document.querySelector(".pagination").innerHTML = paginationHTML;
 
