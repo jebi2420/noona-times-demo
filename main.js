@@ -141,12 +141,14 @@ const pagiNationRender = () => {
     // firstPage
         // 0보다 작거나 같다면 그냥 1로 해주고 아니면 그대로 (첫번째 페이지가 -1이나 0이 될 수 없으니)
         let firstPage = lastPage - (groupSize - 1)<= 0 ? 1 : lastPage - (groupSize - 1);
-    let paginationHTML = ``;
+        
+        let paginationHTML = `<li class="page-item"><a class="page-link" href="#">Previous</a></li>`;
 
     for(let i = firstPage; i<=lastPage; i++){
         // 현재 보고 있는 페이지면 active
         paginationHTML += `<li class="page-item ${i===page?"active":''}"  onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`
     }
+    paginationHTML += ` <li class="page-item"><a class="page-link" href="#">Next</a></li>`
 
     document.querySelector(".pagination").innerHTML = paginationHTML;
     
