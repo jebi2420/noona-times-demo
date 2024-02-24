@@ -148,7 +148,7 @@ const pagiNationRender = () => {
         paginationHTML = `
         <li class="page-item ${page === 1 ? 'disabled invisible' : ''}" ${page !== 1 ? 'onclick="moveToPage(' + 1 + ')"' : ''}><a class="page-link"><i class="fa-solid fa-angles-left"></i></a></li>
         <li class="page-item ${page === 1 ? 'disabled invisible' : ''}" ${page !== 1 ? 'onclick="moveToPage(' + (page - 1) + ')"' : ''}>
-        <a class="page-link" href="#" tabindex="-1" aria-disabled="${page === 1}"><i class="fa-solid fa-angle-left"></i></a>
+        <a class="page-link" tabindex="-1" aria-disabled="${page === 1}"><i class="fa-solid fa-angle-left"></i></a>
         </li>`;      
 
     for(let i = firstPage; i<=lastPage; i++){
