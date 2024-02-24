@@ -129,20 +129,23 @@ const pagiNationRender = () => {
     // pageSize
     // groupSize
     // totalPages
+    const totalPages = Math.ceil(totalResults / pageSize);
     // pageGroup
         const pageGroup = Math.ceil(page / groupSize);
-        console.log("pG " + pageGroup)
     // lastPage
         let lastPage = pageGroup * groupSize;
-        console.log("lP " + lastPage)
+        // 마지막 페이지 그룹이 그룹 사이즈보다 작은 경우 lastPage = totalPages
+        if(lastPage > totalPages){
+            lastPage = totalPages;
+        }
     // firstPage
-        let firstPage = lastPage - (groupSize - 1);
-        console.log("fP " + firstPage)
-
+        // 0보다 작거나 같다면 그냥 1로 해주고 아니면 그대로 (첫번째 페이지가 -1이나 0이 될 수 없으니)
+        let firstPage = lastPage - (groupSize - 1)<= 0 ? 1 : lastPage - (groupSize - 1);
     let paginationHTML = ``;
 
     for(let i = firstPage; i<=lastPage; i++){
-        paginationHTML += `<li class="page-item" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`
+        // 현재 보고 있는 페이지면 active
+        paginationHTML += `<li class="page-item ${i===page?"active":''}"  onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`
     }
 
     document.querySelector(".pagination").innerHTML = paginationHTML;
@@ -161,7 +164,6 @@ const pagiNationRender = () => {
 
 // 페이지네이션 클릭 시 해당 페이지로 넘어감
 const moveToPage = (pageNum) => {
-    console.log("move to page", pageNum);
     page = pageNum;
     getNews();
 }
