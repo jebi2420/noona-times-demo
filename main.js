@@ -10,6 +10,13 @@ mobileMenus.forEach(menu => menu.addEventListener("click", (event) => getNewsByC
 // 전역변수 url
 let url = new URL(`https://noona-times-demo.netlify.app/top-headlines`);
 
+// pagenation을 위한 정보 변수들
+let totalResults = 0;
+let page = 1;
+const pageSize = 10;
+const groupSize = 5;
+
+
 // 뉴스 가져오기
 const getNews = async () => {
     try {
@@ -23,7 +30,12 @@ const getNews = async () => {
                 throw new Error("No result for this search");
             }
             newsList = data.articles;
+            totalResults = data.totalResults
+            console.log(data)
+            console.log(newsList)
+            console.log(totalResults)
             render();
+            pagiNationRender();
         }else{
             // 비정상일 경우 에러메시지를 보낸다
             throw new Error(data.message);
@@ -104,6 +116,44 @@ const errorRender = (errorMessage) => {
     </div>`;
 
     document.getElementById("news-board").innerHTML = errorHTML;
+}
+
+// 페이지네이션
+const pagiNationRender = () => {
+    // totalResults
+    // page
+    // pageSize
+    // groupSize
+    // totalPages
+    // pageGroup
+        const pageGroup = Math.ceil(page / groupSize);
+        console.log("pG " + pageGroup)
+    // lastPage
+        let lastPage = pageGroup * groupSize;
+        console.log("lP " + lastPage)
+    // firstPage
+        let firstPage = lastPage = (groupSize - 1);
+        console.log("fP " + firstPage)
+
+    let paginationHTML = ``;
+
+    for(let i = firstPage; i<=lastPage; i++){
+        paginationHTML += `<li class="page-item"><a class="page-link" href="#">${i}</a></li>`
+    }
+
+
+    document.querySelector(".pagination").innerHTML = paginationHTML;
+    
+    // <nav aria-label="Page navigation example">
+    //     <ul class="pagination">
+    //         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    //         <li class="page-item"><a class="page-link" href="#">1</a></li>
+    //         <li class="page-item"><a class="page-link" href="#">2</a></li>
+    //         <li class="page-item"><a class="page-link" href="#">3</a></li>
+    //         <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    //     </ul>
+    // </nav>
+
 }
 
 getNews();
