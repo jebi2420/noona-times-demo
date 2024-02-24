@@ -20,6 +20,10 @@ const groupSize = 5;
 // 뉴스 가져오기
 const getNews = async () => {
     try {
+        // url 뒤에다 추가로 페이지 정보를 붙여줌
+        url.searchParams.set("page", page); // => &page=page
+        url.searchParams.set("pageSize", pageSize); 
+
         const response = await fetch(url);
         const data = await response.json();
 
@@ -132,15 +136,14 @@ const pagiNationRender = () => {
         let lastPage = pageGroup * groupSize;
         console.log("lP " + lastPage)
     // firstPage
-        let firstPage = lastPage = (groupSize - 1);
+        let firstPage = lastPage - (groupSize - 1);
         console.log("fP " + firstPage)
 
     let paginationHTML = ``;
 
     for(let i = firstPage; i<=lastPage; i++){
-        paginationHTML += `<li class="page-item"><a class="page-link" href="#">${i}</a></li>`
+        paginationHTML += `<li class="page-item" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`
     }
-
 
     document.querySelector(".pagination").innerHTML = paginationHTML;
     
@@ -156,6 +159,13 @@ const pagiNationRender = () => {
 
 }
 
+// 페이지네이션 클릭 시 해당 페이지로 넘어감
+const moveToPage = (pageNum) => {
+    console.log("move to page", pageNum);
+    page = pageNum;
+    getNews();
+}
+
 getNews();
 
 // 사이드 메뉴
@@ -167,7 +177,6 @@ const closeNav = () => sideNav.style.width = "0";
 let searchInputBox = document.getElementById("search-input-box");
 const toggleSearch = () => {
     if(searchInputBox.style.display === "none"){
-        console.log("flex");
         searchInputBox.style.display = "flex"
     }else{
         searchInputBox.style.display = "none"
