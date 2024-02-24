@@ -146,8 +146,8 @@ const pagiNationRender = () => {
 
         // previous 
         paginationHTML = `
-        <li class="page-item ${page === 1 ? 'disabled' : ''}" ${page !== 1 ? 'onclick="moveToPage(' + 1 + ')"' : ''}><a class="page-link"><i class="fa-solid fa-angles-left"></i></a></li>
-        <li class="page-item ${page === 1 ? 'disabled' : ''}" ${page !== 1 ? 'onclick="moveToPage(' + (page - 1) + ')"' : ''}>
+        <li class="page-item ${page === 1 ? 'disabled invisible' : ''}" ${page !== 1 ? 'onclick="moveToPage(' + 1 + ')"' : ''}><a class="page-link"><i class="fa-solid fa-angles-left"></i></a></li>
+        <li class="page-item ${page === 1 ? 'disabled invisible' : ''}" ${page !== 1 ? 'onclick="moveToPage(' + (page - 1) + ')"' : ''}>
         <a class="page-link" href="#" tabindex="-1" aria-disabled="${page === 1}"><i class="fa-solid fa-angle-left"></i></a>
         </li>`;      
 
@@ -157,9 +157,9 @@ const pagiNationRender = () => {
     }
     // next
     paginationHTML += `
-    <li class="page-item ${page === totalPages ? 'disabled' : ''}" 
+    <li class="page-item ${page === totalPages ? 'disabled invisible' : ''}" 
     ${page !== totalPages ? 'onclick="moveToPage(' + (page+1) + ')"' : ''}><a class="page-link"><i class="fa-solid fa-angle-right"></i></a></li>
-    <li class="page-item ${page === totalPages ? 'disabled' : ''}" ${page !== totalPages ? 'onclick="moveToPage(' + totalPages + ')"' : ''}><a class="page-link"><i class="fa-solid fa-angles-right"></i></a></li>`
+    <li class="page-item ${page === totalPages ? 'disabled invisible' : ''}" ${page !== totalPages ? 'onclick="moveToPage(' + totalPages + ')"' : ''}><a class="page-link"><i class="fa-solid fa-angles-right"></i></a></li>`
 
     document.querySelector(".pagination").innerHTML = paginationHTML;
 

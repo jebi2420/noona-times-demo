@@ -108,6 +108,10 @@
     display: none;
 }
 
+.invisible{
+    display: none;
+}
+
 @media screen and (max-width: 48rem) {
     .side-nav {padding-top: 15px;}
     .side-nav a {font-size: 18px;}
